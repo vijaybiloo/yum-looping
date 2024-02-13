@@ -45,4 +45,5 @@ do
     else
         SKIP "$Y $i already installed, hence skipping it $N"
     fi
-    
+
+done
