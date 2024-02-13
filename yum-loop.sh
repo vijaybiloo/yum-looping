@@ -37,7 +37,7 @@ SKIP(){
 for i in $@
 do
     yum list installed $i &>>$LOGFILE
-    if [ $1 -ne 0 ]
+    if [ $? -ne 0 ]
     then 
         echo -e "$i $G is not installed, hence installing it $N"
         yum install $i -y &>>$LOGFILE
