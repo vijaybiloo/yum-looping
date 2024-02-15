@@ -5,7 +5,6 @@ DATE=$(date +%F:%H:%M:%S)
 SCRIPT=$0
 LOGDIR=/tmp
 LOGFILE=$LOGDIR/$DATE-$SCRIPT.log
-
 IDROBO=$(id roboshop)
 
 R="\e[31m"
@@ -35,10 +34,10 @@ SKIP(){
 
 if [ $IDROBO -ne 0 ]
 then
-    SKIP "roboshop user already exists"
-else
     useradd roboshop &>>$LOGFILE
     VALIDATE $? "Creating roboshop user"
+else
+    echo "roboshop user already exists"
 fi
 
 curl -sL https://rpm.nodesource.com/setup_lts.x | bash &>>$LOGFILE
