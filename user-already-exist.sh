@@ -32,12 +32,12 @@ SKIP(){
 	echo -e "$1 Exist... $Y SKIPPING $N"
 }
 
-if [ $IDROBO -ne 0 ]
+if [ $IDROBO -eq 0 ] &>>$LOGFILE
 then
-    useradd roboshop &>>$LOGFILE
-    VALIDATE $? "Creating roboshop user"
+    echo "user exist!"
 else
-    echo "roboshop user already exists"
+    echo "Creating user"
+    useradd roboshop &>>$LOGFILE  
 fi
 
 curl -sL https://rpm.nodesource.com/setup_lts.x | bash &>>$LOGFILE
