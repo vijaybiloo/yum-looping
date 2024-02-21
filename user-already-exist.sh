@@ -34,7 +34,7 @@ SKIP(){
 
 if [ $IDROBO -eq 0 ] &>>$LOGFILE
 then
-    echo "user exist!"
+    SKIP "user exist!"
 else
     echo "Creating user"
     useradd roboshop &>>$LOGFILE  
