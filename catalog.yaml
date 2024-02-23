@@ -24,4 +24,4 @@
   - name: check /app directory exists or not
     ansible.builtin.stat:
       path: /app
-      register: directory
+    register: directory
