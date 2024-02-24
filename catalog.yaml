@@ -70,3 +70,12 @@
     ansible.builtin.yum:
       name: mongodb-org-shell
       state: present
+
+  - name: load catalogue data
+    ansible.builtin.command: mongo --host node.jiondevops.site < /app/schema/catalogue.js
+
+  - name: restart catalogue
+    ansible.builtin.service:
+      name: catalogue
+      state: restarted
+      enabled: true
