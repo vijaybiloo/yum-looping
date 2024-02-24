@@ -1,20 +1,20 @@
-- name: Install cataloge component
+- name: Install catalogue component
   hosts: node
   become: yes
   tasks:
-  - name: setup NPN source #(catalogue source)
+  - name: setup NPM source
     ansible.builtin.shell: "curl -sL https://rpm.nodesource.com/setup_lts.x | bash"
 
-  - name: install NodeJS
+  - name: Install NodeJS
     ansible.builtin.yum:
       name: nodejs
-      state: present
+      state: installed
 
   - name: check roboshop user exist or not
     ansible.builtin.command: id roboshop
-    register: out #out is the variable name
+    register: out #output is variable name
     ignore_errors: true
-  
+
   - when: out.rc != 0
     name: create user roboshop
     become: yes # we need sudo access for this task only
@@ -39,11 +39,11 @@
   - name: download catalogue artifact
     ansible.builtin.get_url:
       url: https://roboshop-builds.s3.amazonaws.com/catalogue.zip
-      dest: /opt
+      dest: /tmp
 
   - name: extract catalogue artifact
     ansible.builtin.unarchive:
-      src: /opt/catalogue.zip
+      src: /tmp/catalogue.zip
       dest: /app
       remote_src: yes
 
@@ -57,7 +57,7 @@
       src: catalogue.service
       dest: /etc/systemd/system/catalogue.service
 
-  - name: daemon reload
+  - name: deamon reload
     ansible.builtin.systemd:
       daemon_reload: true
 
@@ -66,10 +66,10 @@
       src: mongodb.repo
       dest: /etc/yum.repos.d/mongo.repo
 
-  - name: install mongodb
+  - name: Install MongoDB
     ansible.builtin.yum:
       name: mongodb-org-shell
-      state: present
+      state: installed
 
   - name: load catalogue data
     ansible.builtin.command: mongo --host node.joindevops.online < /app/schema/catalogue.js
@@ -79,3 +79,7 @@
       name: catalogue
       state: restarted
       enabled: true
+
+  
+
+  
