@@ -1,5 +1,5 @@
 - name: Install cataloge component
-  hosts: node
+  hosts: catalogue
   become: yes
   tasks:
   - name: setup NPN source #(catalogue source)
