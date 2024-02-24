@@ -1,5 +1,5 @@
 - name: Install cataloge component
-  hosts: 54.224.243.33
+  hosts: node
   become: yes
   tasks:
   - name: setup NPN source #(catalogue source)
