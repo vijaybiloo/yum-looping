@@ -1,5 +1,8 @@
-[node]
-52.207.246.236
-
 [mongodb]
-node.jiondevops.site
+mongodb.vijaydeepak0812.online
+
+[catalogue]
+catalogue.vijaydeepak0812.online
+
+[web-nginx]
+web-nginx.vijaydeepak0812.online
