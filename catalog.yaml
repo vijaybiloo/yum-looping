@@ -69,7 +69,7 @@
   - name: install mongodb
     ansible.builtin.yum:
       name: mongodb-org-shell
-      state: present
+      state: installed
 
   - name: load catalogue data
     ansible.builtin.command: mongo --host mongodb.vijaydeepak0812.online. < /app/schema/catalogue.js
